@@ -11,20 +11,23 @@ source:
 
 build:
   noarch: python
-  number: 0
+  number: 1
   script: "{{ PYTHON }} -m pip install . -vv"
 
 requirements:
   host:
-    - python >=3.5
+    - python {{ python_min }}
     - pip
+    - setuptools
   run:
-    - python >=3.5
+    - python >={{ python_min }}
     - requests
     - future
     - bibtexparser
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - doi2bib
 
