@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: doi2bib
-  version: "0.4.0"
+  version: 0.4.0
 
 package:
   name: ${{ name|lower }}
@@ -19,7 +19,7 @@ build:
 
 requirements:
   host:
-    - python ${{ python_min }}
+    - python ${{ python_min }}.*
     - pip
     - setuptools
   run:
@@ -38,14 +38,13 @@ tests:
         - "*"
   - requirements:
       run:
-        - python ${{ python_min }}
+        - python ${{ python_min }}.*
 
 about:
   license: MIT
   license_file: LICENSE
   summary: get the bibtex string given a doi
-  description: |
-    get the bibtex string given a doi
+  description: get the bibtex string given a doi
   homepage: https://github.com/bibcure/doi2bib
   repository: https://github.com/bibcure/doi2bib
   documentation: https://doi2bib.readthedocs.io/
