@@ -1,0 +1,55 @@
+schema_version: 1
+
+context:
+  name: doi2bib
+  version: "0.4.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/bibcure/${{ name }}/archive/${{ version }}.tar.gz
+  sha256: 272458eb88a34ab0fd4c69c6a4f2698496ccd9791d827f52b6c2b3ae6a3a221c
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - requests
+    - future
+    - bibtexparser
+
+tests:
+  - python:
+      imports:
+        - doi2bib
+      pip_check: false
+      python_version:
+        - ${{ python_min }}
+        - "*"
+  - requirements:
+      run:
+        - python ${{ python_min }}
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: get the bibtex string given a doi
+  description: |
+    get the bibtex string given a doi
+  homepage: https://github.com/bibcure/doi2bib
+  repository: https://github.com/bibcure/doi2bib
+  documentation: https://doi2bib.readthedocs.io/
+
+extra:
+  recipe-maintainers:
+    - jan-janssen
